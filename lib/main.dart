@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xffFFFBEB),
         useMaterial3: true,
       ),
-      home:  const NotificationScreen(payLoad: 'notify',),
+      home:  const NotificationScreen(),
     );
   }
 }

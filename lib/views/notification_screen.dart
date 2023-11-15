@@ -1,33 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../widgets/notification_content.dart';
 
-class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({super.key, required this.payLoad});
+class NotificationScreen extends StatelessWidget {
+  const NotificationScreen({super.key});
 
-  final String payLoad;
-  @override
-  State<NotificationScreen> createState() => _NotificationScreenState();
-}
-
-class _NotificationScreenState extends State<NotificationScreen> {
-
-  String _payLoad ='';
-@override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    _payLoad = widget.payLoad;
-
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.theme.primaryColor,
         centerTitle: true,
-        title: Text(_payLoad.toString().split('|')[0],
+        title: Text("Reminder",
         style: TextStyle(
           color: Get.isDarkMode? Colors.white :Colors.black,
         ),),
@@ -39,21 +24,34 @@ class _NotificationScreenState extends State<NotificationScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Text("Hello, Mart",
-            style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w700,
-              color: Get.isDarkMode? Colors.white :Colors.black,
-            ),),
+            const SizedBox(height: 20,),
+            Column(
+              children: [
+                Text("Hello, Mart",
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                  color: Get.isDarkMode? Colors.white :Colors.black,
+                ),),
+                const SizedBox(height: 10,),
+                Text("you have a new reminder",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w300,
+                  color: Get.isDarkMode? Colors.white :Colors.black,
+                ),),
+              ],
+            ),
             const SizedBox(height: 10,),
-            Text("you have a new reminder",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w300,
-              color: Get.isDarkMode? Colors.white :Colors.black,
-            ),),
+            const Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(30.0),
+                child: NotificationContent(payLoad: 'notificatio|content|date',),
+              )),
+            const SizedBox(height: 10,),
           ],
         )),
     );
   }
 }
+
