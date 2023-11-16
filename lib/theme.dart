@@ -1,11 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-const Color bluishClr = Color(0xFF4e5ae8);
-const Color orangeClr = Color(0xCFFF8746);
-const Color pinkClr = Color(0xFFff4667);
-const Color white = Colors.white;
-const primaryClr = bluishClr;
-const Color darkGreyClr = Color(0xFF121212);
-const Color darkHeaderClr = Color(0xFF424242);
+const Color kDarkGreen = Color(0XFF82C2BD);
+const Color kLightBeige = Color(0XFFFFEBBE);
+const Color kLightGreen = Color(0xffD5EBED);
+const Color kgray = Color(0xffDAE7EF);
 
-class Themes {}
+const primaryClr = Colors.white;
+
+const Color kdarkClr = Color(0xff003044);
+const Color kdarkDo1 = Color(0xffA1B4B3);
+const Color kdarkDo2 = Color(0xff55C2BA);
+const Color kdarkDo3 = Color(0xff1EC88F);
+const Color kdarkDod = Color(0xffA9BBBD);
+class Themes {
+static final lightAppColors =  ThemeData(
+        primaryColor: primaryClr,
+        scaffoldBackgroundColor: primaryClr,
+        brightness: Brightness.light,
+        useMaterial3: true,
+      );
+static final darkAppColors =  ThemeData(
+        primaryColor: kdarkClr,
+        scaffoldBackgroundColor: kdarkClr,
+        brightness: Brightness.dark,
+        useMaterial3: true,
+      );
+
+TextStyle get headingStyle {
+  return TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    color: Get.isDarkMode? Colors.white :Colors.black,
+    fontFamily: "Exo2",
+  );
+}
+
+TextStyle get supHeadingStyle {
+  return TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.w700,
+    color: Get.isDarkMode? Colors.white :Colors.black,
+    fontFamily: "Exo2",
+  );
+}
+}

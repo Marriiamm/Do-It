@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:todo/views/home.dart';
 
+import 'theme.dart';
 import 'views/notification_screen.dart';
 
 void main() {
@@ -17,11 +18,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Do It',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Color(0xffFFFBEB),
-        scaffoldBackgroundColor: Color(0xffFFFBEB),
-        useMaterial3: true,
-      ),
+      theme: Themes.lightAppColors ,
+      darkTheme: Themes.darkAppColors,
+      themeMode: ThemeMode.light,
       home:  const NotificationScreen(),
     );
   }
