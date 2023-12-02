@@ -10,7 +10,7 @@ const primaryClr = Colors.white;
 
 const Color kdarkClr = Color(0xff003044);
 const Color kdarkDo1 = Color(0xffA1B4B3);
-const Color kdarkDo2 = Color(0xff55C2BA);
+const Color kdarkDo2 = Color.fromARGB(255, 83, 174, 168);
 const Color kdarkDo3 = Color(0xff1EC88F);
 const Color kdarkDod = Color(0xffA9BBBD);
 class Themes {
@@ -27,6 +27,8 @@ static final darkAppColors =  ThemeData(
         useMaterial3: true,
       );
 
+
+}
 TextStyle get headingStyle {
   return TextStyle(
     fontSize: 28,
@@ -44,4 +46,20 @@ TextStyle get supHeadingStyle {
     fontFamily: "Exo2",
   );
 }
+
+TextStyle get titleStyle {
+  return TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    color: Get.isDarkMode? Colors.white :Colors.black,
+    fontFamily: "Exo2",
+  );
+}
+TextStyle get supTitleStyle {
+  return TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: Get.isDarkMode? Colors.white :Colors.black,
+    fontFamily: "Exo2",
+  );
 }

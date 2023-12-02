@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import 'package:todo/views/home.dart';
-
+import 'services/theme_services.dart';
 import 'theme.dart';
-import 'views/notification_screen.dart';
+import 'views/home.dart';
+//import 'views/notification_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Themes.lightAppColors ,
       darkTheme: Themes.darkAppColors,
-      themeMode: ThemeMode.light,
-      home:  const NotificationScreen(),
+      themeMode: ThemeServices().theme,
+      home:  const MyHomePage(),
     );
   }
 }
