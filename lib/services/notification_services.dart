@@ -6,7 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 
 import '../views/notification_screen.dart';
 import '/models/task_model.dart';
@@ -92,7 +92,8 @@ displayNotification({required String title , required String body}) async{
     task.id!,
     task.title,
     task.note,
-    tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+    //tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+    _nextInstanceOfTenAM(hour,minutes) ,
     const NotificationDetails(
         android: AndroidNotificationDetails(
             'your channel id', 'your channel name',
@@ -107,6 +108,8 @@ displayNotification({required String title , required String body}) async{
   );
 
   }
+
+
   tz.TZDateTime _nextInstanceOfTenAM(int hour, int minutes) {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
     tz.TZDateTime scheduledDate =
@@ -119,7 +122,7 @@ displayNotification({required String title , required String body}) async{
 
   Future<void> _configureLocalTimeZone() async {
     tz.initializeTimeZones();
-    final String timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
+    final String timeZoneName = await FlutterTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(timeZoneName));
   }
 

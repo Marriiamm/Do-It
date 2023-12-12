@@ -135,10 +135,22 @@ class _MyHomePageState extends State<MyHomePage> {
   showTasks() {
     return  Expanded(
       child: ListView.builder(
-        scrollDirection: SizeConfig.orientation == Orientation.landscape?Axis.horizontal:Axis.vertical,
+        scrollDirection: 
+        SizeConfig.orientation == Orientation.landscape
+        ?Axis.horizontal
+        :Axis.vertical,
         itemCount: taskController.taskList.length,
         itemBuilder: (context, index){
           var task =  taskController.taskList[index];
+          var hour = task.startTime.toString().split(':')[0];
+          var minutes = task.startTime.toString().split(':')[1];
+          debugPrint("hours :"+hour);
+          debugPrint("minutes :"+minutes);
+          notifyHelper.scheduledNotification(
+            int.parse(hour),
+            int.parse(minutes),
+            task
+            );
           return AnimationConfiguration.staggeredList(
             duration: const Duration(milliseconds: 1375),
             position: index,

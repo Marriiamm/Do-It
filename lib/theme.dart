@@ -19,6 +19,7 @@ static final lightAppColors =  ThemeData(
         scaffoldBackgroundColor: primaryClr,
         brightness: Brightness.light,
         useMaterial3: true,
+        
       );
 static final darkAppColors =  ThemeData(
         primaryColor: kdarkClr,

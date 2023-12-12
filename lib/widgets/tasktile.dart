@@ -21,7 +21,7 @@ class TaskTile extends StatelessWidget {
           : SizeConfig.screenWidth,
       margin: EdgeInsets.only(bottom: getProportionateScreenHeight(12)),
       child: Container(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.only(left:20,top: 15,right: 20,bottom: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: _getBGClr(task.color),
@@ -42,7 +42,7 @@ class TaskTile extends StatelessWidget {
                           color: Get.isDarkMode ? Colors.white : Colors.black),
                     ),
                     const SizedBox(
-                      height: 12,
+                      height: 5,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -62,7 +62,7 @@ class TaskTile extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 12,
+                      height: 5,
                     ),
                     Text(
                       task.note!,
