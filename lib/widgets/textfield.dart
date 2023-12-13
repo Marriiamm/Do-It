@@ -19,7 +19,7 @@ class TextFieldd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(16),
+      margin: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,7 +31,7 @@ class TextFieldd extends StatelessWidget {
           margin: const EdgeInsets.only(left: 0,top: 4),
           decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
-          color: kdarkDo1,
+          color: Colors.grey.withOpacity(0.2),
           ),
           child: Row(
             children: [

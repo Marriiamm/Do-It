@@ -20,13 +20,13 @@ class _AddTaskViewState extends State<AddTaskView> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
   DateTime selectedDate = DateTime.now();
-  String startTime = DateFormat('hh:mm a').format(DateTime.now());
+  String startTime = DateFormat('hh:mm a').format(DateTime.now()).toString();
   String endTime = DateFormat('hh:mm a')
-      .format(DateTime.now().add(const Duration(minutes: 15)));
+      .format(DateTime.now().add(const Duration(minutes: 15))).toString();
   int selectedRemind = 5;
   List<int> remindList = [5, 10, 15, 20];
   String selectedrepeat = 'None';
-  List<String> repeatList = ['none', 'Daily', 'Weekly', 'Monthly'];
+  List<String> repeatList = ['None', 'Daily', 'Weekly', 'Monthly'];
   int selectedColor = 0;
 
   @override
@@ -34,7 +34,7 @@ class _AddTaskViewState extends State<AddTaskView> {
     return Scaffold(
       appBar: customAppBar(),
       body: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(5),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -57,9 +57,9 @@ class _AddTaskViewState extends State<AddTaskView> {
                 hint: DateFormat.yMd().format(selectedDate),
                 widget: IconButton(
                     onPressed: () => getDateFromUser(),
-                    icon: const Icon(
+                    icon:  Icon(
                       Icons.calendar_today_rounded,
-                      color: kdarkClr,
+                      color: Get.isDarkMode?kdarkDo3: kDarkGreen,
                     )),
               ),
               Row(
@@ -71,9 +71,9 @@ class _AddTaskViewState extends State<AddTaskView> {
                       hint: startTime,
                       widget: IconButton(
                           onPressed: () => getTimeFromUser(isStartTime: true),
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.schedule_rounded,
-                            color: kdarkClr,
+                            color: Get.isDarkMode?kdarkDo3: kDarkGreen,
                           )),
                     ),
                   ),
@@ -86,9 +86,9 @@ class _AddTaskViewState extends State<AddTaskView> {
                       hint: endTime,
                       widget: IconButton(
                           onPressed: () => getTimeFromUser(isStartTime: false),
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.schedule_rounded,
-                            color: kdarkClr,
+                            color: Get.isDarkMode?kdarkDo3: kDarkGreen,
                           )),
                     ),
                   ),
@@ -101,19 +101,19 @@ class _AddTaskViewState extends State<AddTaskView> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: DropdownButton(
                       borderRadius: BorderRadius.circular(15),
-                      //dropdownColor: ,
+                      dropdownColor: Get.isDarkMode?kdarkDo3: kLightGreen ,
                       items: remindList
                           .map<DropdownMenuItem<String>>(
                               (value) => DropdownMenuItem<String>(
                                   value: value.toString(),
                                   child: Text(
                                     '$value',
-                                    style: const TextStyle(color: kdarkClr),
+                                    style: TextStyle(color: Get.isDarkMode?Colors.white: kdarkClr),
                                   )))
                           .toList(),
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.keyboard_arrow_down_rounded,
-                        color: kdarkClr,
+                        color: Get.isDarkMode?kdarkDo3: kDarkGreen,
                         size: 40,
                       ),
                       elevation: 4,
@@ -133,7 +133,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: DropdownButton(
                       borderRadius: BorderRadius.circular(15),
-                      //dropdownColor: ,
+                      dropdownColor: Get.isDarkMode?kdarkDo3: kDarkGreen,
                       items: repeatList
                           .map<DropdownMenuItem<String>>(
                               (String value) => DropdownMenuItem<String>(
@@ -143,9 +143,9 @@ class _AddTaskViewState extends State<AddTaskView> {
                                     style: const TextStyle(color: kdarkClr),
                                   )))
                           .toList(),
-                      icon: const Icon(
+                      icon:  Icon(
                         Icons.keyboard_arrow_down_rounded,
-                        color: kdarkClr,
+                        color: Get.isDarkMode?kdarkDo3: kDarkGreen,
                         size: 40,
                       ),
                       elevation: 4,
@@ -205,7 +205,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                     : index == 1
                         ? kdarkDo2
                         : kdarkDo3,
-                child: selectedColor == index ? const Icon(Icons.done) : null,
+                child: selectedColor == index ? const Icon(Icons.done,color: Colors.white,) : null,
               ),
             ),
           ),

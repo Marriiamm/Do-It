@@ -59,7 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Icons.cleaning_services_rounded,
             color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
-          onPressed:()=> taskController.deleteAllTasks(),
+          onPressed:() {
+            notifyHelper.cancelAllNotification();
+            taskController.deleteAllTasks();
+          },
           ),
       actions:  [
         IconButton(
@@ -130,7 +133,9 @@ class _MyHomePageState extends State<MyHomePage> {
         monthTextStyle: textStyle,
         dateTextStyle: textStyle,
         onDateChange: (newDate) {
-          selectedDate = newDate;
+          setState(() {
+            selectedDate = newDate;
+          });
         },
         selectedTextColor: Get.isDarkMode ? Colors.white : Colors.black,
         selectionColor: Get.isDarkMode ? kdarkDod : kgray,
@@ -172,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         int.parse(myTime.toString().split(':')[1]),
                         task);
                     return AnimationConfiguration.staggeredList(
-                      duration: const Duration(milliseconds: 1375),
+                      duration: const Duration(milliseconds: 1000),
                       position: index,
                       child: SlideAnimation(
                         horizontalOffset: 300,

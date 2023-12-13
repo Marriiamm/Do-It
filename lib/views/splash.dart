@@ -9,14 +9,14 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterSplashScreen.fadeIn(
-          backgroundColor: const Color(0xffFFEBBE),
+          backgroundColor: Colors.white,
           onInit: () {
             debugPrint("On Init");
           },
           onEnd: () {
             debugPrint("On End");
           },
-          childWidget:  Image.asset("assets/images/splash.png"),
+          childWidget:  Image.asset("assets/images/splashh.png"),
           onAnimationEnd: () => debugPrint("On Fade In End"),
           nextScreen: const MyHomePage(),
         );

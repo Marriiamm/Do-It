@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../theme.dart';
 
 class NotificationContent extends StatefulWidget {
   const NotificationContent({super.key, required this.payLoad});
@@ -23,7 +26,7 @@ class _NotificationContentState extends State<NotificationContent> {
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(26.0),
-        color: const Color(0xff8c7153),
+        color: Get.isDarkMode?kdarkDo3: kLightGreen,
       ),
       child:  SingleChildScrollView(
         child: Column(

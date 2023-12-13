@@ -23,10 +23,10 @@ class NotifyHelper {
 
   initializeNotification() async {
     tz.initializeTimeZones();
+
     _configureSelectNotificationSubject();
     await _configureLocalTimeZone();
-    // await requestIOSPermissions(flutterLocalNotificationsPlugin);
-    //tz.setLocalLocation(tz.getLocation(timeZoneName));
+
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('doit');
     final DarwinInitializationSettings initializationSettingsDarwin =
@@ -87,6 +87,10 @@ class NotifyHelper {
     await flutterLocalNotificationsPlugin.cancel(task.id!);
   }
 
+  cancelAllNotification() async {
+    await flutterLocalNotificationsPlugin.cancelAll();
+  }
+
   scheduledNotification(int hour, int minutes, TaskModel task) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
         task.id!,
@@ -109,27 +113,34 @@ class NotifyHelper {
   tz.TZDateTime _nextInstanceOfTenAM(
       int hour, int minutes, int remind, String repeat, String date) {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    var formattedDate =DateFormat.yMd().parse(date);
+    final tz.TZDateTime fd = tz.TZDateTime.from(formattedDate, tz.local);
     tz.TZDateTime scheduledDate =
-        tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minutes);
+        tz.TZDateTime(tz.local, fd.year, fd.month, fd.day, hour, minutes);
+
 
 //to manage reminder for notification
-
-    scheduledDate = afterRemind(remind, scheduledDate);
-    
-//to manage repeated notification
-
-var formattedDate =DateFormat.yMd().parse(date);
+scheduledDate =afterRemind(remind, scheduledDate);
     if (scheduledDate.isBefore(now)) {
+      if (repeat == 'None') {
+        scheduledDate = tz.TZDateTime(tz.local, now.year, now.month, formattedDate.day, hour, minutes);
+        print("final ScheduledDate None");
+      } 
       if (repeat == 'Daily') {
         scheduledDate = tz.TZDateTime(tz.local, now.year, now.month, (formattedDate.day)+1, hour, minutes);
-      } else if (repeat == 'Weekly') {
+        print("final ScheduledDate Dialy");
+      } 
+      if (repeat == 'Weekly') {
         scheduledDate = tz.TZDateTime(tz.local, now.year, now.month, (formattedDate.day)+7, hour, minutes);
-      } else if (repeat == 'Monthly') {
+        print("final ScheduledDate weekly");
+      } 
+      if (repeat == 'Monthly') {
         scheduledDate = tz.TZDateTime(tz.local, now.year, (formattedDate.month)+1, formattedDate.day, hour, minutes);
+        print("final ScheduledDate monthly");
       }
+          print("final ScheduledDate =$scheduledDate");
     }
 
-    print("final ScheduledDate =$scheduledDate");
 
 //to manage reminder for notification
 
