@@ -1,58 +1,31 @@
 import 'package:get/get.dart';
+import 'package:todo/db/db_helper.dart';
 import '../models/task_model.dart';
 
 class TaskController extends GetxController{
-  final taskList =<TaskModel>[
-    TaskModel(
-       id: 4,
-      title: "to finish todo",
-      note: "i can do it inshaalah",
-      isCompleted: 0,
-      startTime: "3:45",
-      endTime: "4:00",
-      color: 1,
+  final RxList<TaskModel> taskList =<TaskModel>[].obs;
 
-    ),
-    TaskModel(
-       id: 0,
-      title: "to finish todo",
-      note: "i can do it inshaalah",
-      isCompleted: 1,
-      startTime: "3:45",
-      endTime: "4:00",
-      color: 0,
+  Future<int> addTask({TaskModel? task}){
+    return DbHelper.insertFun(task);
+  }
 
-    ),
-    TaskModel(
-       id: 1,
-      title: "to finish todo",
-      note: "i can do it inshaalah",
-      isCompleted: 0,
-      startTime: "3:45",
-      endTime: "4:00",
-      color: 2,
+  Future<void> getTasks()async{
+    final List<Map<String,dynamic>> tasks =await DbHelper.queryy();
+    taskList.assignAll(tasks.map((data) => TaskModel.fromJson(data)).toList());
+  }
 
-    ),
-    TaskModel(
-      id: 2,
-      title: "to finish todo",
-      note: "i can do it inshaalah",
-      isCompleted: 0,
-      startTime: "3:45",
-      endTime: "4:00",
-      color: 1,
+  void deleteTasks(TaskModel task)async{
+    await DbHelper.delete(task);
+    getTasks();
+  }
 
-    ),
-    TaskModel(
-       id: 3,
-      title: "to finish todo",
-      note: "i can do it inshaalah",
-      isCompleted: 0,
-      startTime: "3:45",
-      endTime: "4:00",
-      color: 0,
+  void deleteAllTasks()async{
+    await DbHelper.deleteAll();
+    getTasks();
+  }
 
-    ),
-  ];
-  getTasks(){}
+  void markAsCompletedTasks(int id)async{
+    await DbHelper.updateFun(id);
+    getTasks();
+  }
 }

@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class TaskModel {
   int? id;
@@ -40,21 +39,16 @@ class TaskModel {
     };
   }
 
-  factory TaskModel.fromMap(Map<String,dynamic> map){
-    return TaskModel(
-      id: map['id'],
-      title: map['title'],
-      note: map['note'],
-      isCompleted: map['isCompleted'],
-      date: map['date'],
-      startTime: map['startTime'],
-      endTime: map['endTime'],
-      color: map['color'],
-      remind: map['remind'],
-      repeat: map['repeat']
-    );
+  TaskModel.fromJson(Map<String,dynamic> json){
+      id = json['id'];
+      title= json['title'];
+      note= json['note'];
+      isCompleted= json['isCompleted'];
+      date= json['date'];
+      startTime= json['startTime'];
+      endTime= json['endTime'];
+      color= json['color'];
+      remind= json['remind'];
+      repeat= json['repeat'];
   }
-
-  factory TaskModel.fromJson(String source) => TaskModel.fromMap(json.decode(source));
-
 }

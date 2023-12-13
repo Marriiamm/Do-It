@@ -12,12 +12,13 @@ class DbHelper {
     if (_db != null) {
       debugPrint('db is not null');
       return;
-    } else {
+    } 
       try {
-        String path = '${await getDatabasesPath()}task.db';
+        // ignore: prefer_interpolation_to_compose_strings
+        String path = await getDatabasesPath() + 'tasks.db';
         debugPrint('in database path');
         _db = await openDatabase(path, version: _version,
-            onCreate: (Database db, int version) async {
+          onCreate: (Database db, int version) async {
           debugPrint('Create anew one');
           await db.execute(
             'CREATE TABLE $_tableName ('
@@ -28,11 +29,12 @@ class DbHelper {
             'color INTEGER, '
             'isCompleted INTEGER)',
           );
+        debugPrint('Createeeeeeeeee anew one');
         });
       } catch (e) {
         print(e);
       }
-    }
+    
   }
 
   static Future<int> insertFun(TaskModel? task) async {
@@ -45,7 +47,12 @@ class DbHelper {
     return await _db!.delete(_tableName, where: 'id=?', whereArgs: [task.id]);
   }
 
-  static Future<List<Map<String, dynamic>>> queryy(TaskModel task) async {
+  static Future<int> deleteAll() async {
+    print("delete all");
+    return await _db!.delete(_tableName);
+  }
+
+  static Future<List<Map<String, dynamic>>> queryy() async {
     print("queryy");
     return await _db!.query(_tableName);
   }
