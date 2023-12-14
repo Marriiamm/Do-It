@@ -201,10 +201,10 @@ class _AddTaskViewState extends State<AddTaskView> {
               padding: const EdgeInsets.all(5.0),
               child: CircleAvatar(
                 backgroundColor: index == 0
-                    ? kdarkDo1
+                    ? Get.isDarkMode?kdarkDo1: kDarkGreen
                     : index == 1
-                        ? kdarkDo2
-                        : kdarkDo3,
+                        ? Get.isDarkMode? kdarkDo2: kLightBeige
+                        : Get.isDarkMode? kdarkDo3: kLightGreen,
                 child: selectedColor == index ? const Icon(Icons.done,color: Colors.white,) : null,
               ),
             ),
